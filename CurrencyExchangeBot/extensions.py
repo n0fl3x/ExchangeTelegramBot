@@ -48,5 +48,5 @@ class Converter:
         # из результата нашего запроса по нужному ключу - conversion_result
         result = json.loads(req.content)["conversion_result"]
         # формируем строку-сообщение и возвращаем её как результат метода
-        message = f"{amount} {base} = {result} {quote}."
+        message = f"{amount} ед. в валюте {base} = {result} ед. в валюте {quote}."
         return message
