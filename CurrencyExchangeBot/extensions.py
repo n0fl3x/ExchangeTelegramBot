@@ -37,6 +37,9 @@ class Converter:
         # если ввели ноль
         if not amount:
             raise APIException(f"Вы ничего не конвертируете!")
+        # если значение слишком мало
+        if amount < 0.001:
+            raise APIException(f"Введённое значение слишком мало!")
         # если ввели отрицательное количество
         if amount <= 0:
             raise APIException(f"Нельзя конвертировать отрицательное количество валюты!")
@@ -49,7 +52,7 @@ class Converter:
                            f"{base_key}/{quote_key}/{amount}")
         # по формулам не будем считать - дёргаем результат конвертации напрямую
         # из результата нашего запроса по нужному ключу - conversion_result
-        result = round(json.loads(req.content)["conversion_result"], 2)
+        result = round(json.loads(req.content)["conversion_result"], 3)
         # формируем строку-сообщение и возвращаем её как результат метода
         message = f"{amount} ед. в валюте {base} = {result} ед. в валюте {quote}."
         return message
