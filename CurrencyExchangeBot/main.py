@@ -1,7 +1,7 @@
 import telebot
 import traceback
 
-# импортируем наш бот-токен и остальное
+# импортируем наш бот-токен, класс API-исключений и метод расчёта значения конвертации
 from CurrencyExchangeBot.config import TOKEN
 from CurrencyExchangeBot.extensions import *
 
@@ -21,7 +21,7 @@ def start(message: telebot.types.Message):
 @bot.message_handler(commands=["help"])
 def get_help(message: telebot.types.Message):
     """Обработчик сообщения команды /help."""
-    text = 'Команда /values - просмотреть список доступных для конвертации валют'\
+    text = 'Команда /values - просмотреть список доступных для конвертации валют '\
            'и их правильное написание.\n\n'\
            'Чтобы воспользоваться конвертором валют, введите сообщение в следующем формате:\n'\
            '<название исходной валюты>(пробел)<название конечной валюты>'\

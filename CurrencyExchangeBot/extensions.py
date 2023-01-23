@@ -5,8 +5,8 @@ import json
 from CurrencyExchangeBot.config import api_key, currencies
 
 
-# кастомный класс для вызова будущих собственных исключений
 class APIException(Exception):
+    """Кастомный класс для вызова будущих собственных исключений."""
     pass
 
 
@@ -15,7 +15,7 @@ class Converter:
     итогового значения конвертации валют."""
 
     @staticmethod
-    def get_price(base, quote, amount):
+    def get_price(base: str, quote: str, amount: str) -> str:
         # если не нашли совпадений по первой введённой валюте
         try:
             base_key = currencies[str(base.lower())]
@@ -40,13 +40,16 @@ class Converter:
         # если ввели отрицательное количество
         if amount <= 0:
             raise APIException(f"Нельзя конвертировать отрицательное количество валюты!")
+        # ограничитель количества конвертируемой валюты
+        if amount > 1000000000000:
+            raise APIException(f"Введите значение поменьше.")
         # если все проверки пройдены, то формируем запрос,
         # подставляя API-ключ, и введённые значения
         req = requests.get(f"https://v6.exchangerate-api.com/v6/{api_key}/pair/"
                            f"{base_key}/{quote_key}/{amount}")
         # по формулам не будем считать - дёргаем результат конвертации напрямую
         # из результата нашего запроса по нужному ключу - conversion_result
-        result = json.loads(req.content)["conversion_result"]
+        result = round(json.loads(req.content)["conversion_result"], 2)
         # формируем строку-сообщение и возвращаем её как результат метода
         message = f"{amount} ед. в валюте {base} = {result} ед. в валюте {quote}."
         return message
