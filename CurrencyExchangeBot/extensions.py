@@ -50,3 +50,4 @@ class Converter:
         # формируем строку-сообщение и возвращаем её как результат метода
         message = f"{amount} ед. в валюте {base} = {result} ед. в валюте {quote}."
         return message
+
