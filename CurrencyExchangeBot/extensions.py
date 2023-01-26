@@ -2,7 +2,8 @@ import requests
 import json
 
 # импорт API-ключа и словаря валют
-from CurrencyExchangeBot.config import API_KEY, currencies
+from CurrencyExchangeBot.config import currencies
+from CurrencyExchangeBot.personal import API_KEY
 
 
 class APIException(Exception):

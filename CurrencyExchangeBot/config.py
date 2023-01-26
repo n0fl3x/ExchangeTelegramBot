@@ -13,11 +13,3 @@ currencies = {
     "дирхам": "AED",
     "рупий": "INR"
 }
-
-
-# HTTP API access token:
-TOKEN = "5905182110:AAFpWXK5OYdyi5OqfhgLnbaCLlDv1ZSW27Q"
-
-
-# API key:
-API_KEY = "732c65c94310d60db55222d5"

@@ -2,7 +2,7 @@ import telebot
 import traceback
 
 # импортируем наш бот-токен, класс API-исключений и метод расчёта значения конвертации
-from CurrencyExchangeBot.config import TOKEN
+from CurrencyExchangeBot.personal import TOKEN
 from CurrencyExchangeBot.extensions import *
 
 
