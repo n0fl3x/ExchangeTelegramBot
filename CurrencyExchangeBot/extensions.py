@@ -2,7 +2,7 @@ import requests
 import json
 
 # импорт API-ключа и словаря валют
-from CurrencyExchangeBot.config import api_key, currencies
+from CurrencyExchangeBot.config import API_KEY, currencies
 
 
 class APIException(Exception):
@@ -38,7 +38,7 @@ class Converter:
         if not amount:
             raise APIException(f"Вы ничего не конвертируете!")
         # если значение слишком мало
-        if amount < 0.001:
+        if 0 < amount < 0.001:
             raise APIException(f"Введённое значение слишком мало!")
         # если ввели отрицательное количество
         if amount < 0:
@@ -48,7 +48,7 @@ class Converter:
             raise APIException(f"Введите значение поменьше, иначе Вы сломаете бота. :)")
         # если все проверки пройдены, то формируем запрос,
         # подставляя API-ключ, и введённые значения
-        req = requests.get(f"https://v6.exchangerate-api.com/v6/{api_key}/pair/"
+        req = requests.get(f"https://v6.exchangerate-api.com/v6/{API_KEY}/pair/"
                            f"{base_key}/{quote_key}/{amount}")
         # по формулам не будем считать - дёргаем результат конвертации напрямую
         # из результата нашего запроса по нужному ключу - conversion_result,
